@@ -1,4 +1,8 @@
 import * as THREE from 'three';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Generates an ultra-crisp 2048x2048 procedural texture for the Diet Coke can.
@@ -247,6 +251,53 @@ export function initHeroExperience(reducedMotion = false) {
   const resizeObserver = new ResizeObserver(onResize);
   resizeObserver.observe(wrap);
   onResize();
+
+  // Scroll scrubbing with GSAP ScrollTrigger
+  if (!reducedMotion) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: 'top top',
+        end: '+=220%',
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const progressEl = document.querySelector('.progress i');
+          if (progressEl) {
+            progressEl.style.transform = `scaleX(${self.progress})`;
+          }
+          const numberEl = document.querySelector('.progress-number');
+          if (numberEl) {
+            const step = Math.min(3, Math.floor(self.progress * 3) + 1);
+            numberEl.textContent = String(step).padStart(2, '0');
+          }
+        }
+      }
+    });
+
+    // 3D Can rotations and bobs
+    tl.to(can.rotation, { y: Math.PI * 3.9, ease: 'none', duration: 1 }, 0)
+      .to(can.rotation, { z: 0.14, x: 0.2, duration: 0.5, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0)
+      .to(can.position, { y: 0.16, duration: 0.5, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0)
+      .to('.hero-watermark', { xPercent: -12, ease: 'none', duration: 1 }, 0)
+      .to('.red-stripe', { xPercent: 28, ease: 'none', duration: 1 }, 0)
+      .to('.hero-copy', { x: -20, opacity: 0.8, ease: 'none', duration: 0.45 }, 0)
+      .fromTo('.hero-aside', { x: 25, opacity: 0.6 }, { x: 0, opacity: 1, ease: 'none', duration: 0.5 }, 0);
+  }
+
+  // Optimize rendering: only render when stage is in viewport
+  let isIntersecting = true;
+  const observer = new IntersectionObserver((entries) => {
+    isIntersecting = entries[0].isIntersecting;
+  }, { rootMargin: '100px' });
+  observer.observe(stage);
+
+  gsap.ticker.add(() => {
+    if (isIntersecting) {
+      renderer.render(scene, camera);
+    }
+  });
 
   return { renderer, scene, camera, can, stage };
 }
