@@ -1,5 +1,6 @@
 // Diet Coke Interactive 3D Experience - Main Entry
 import { initHeroExperience } from './can.js';
+import { initPourExperience } from './pour.js';
 
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
@@ -38,3 +39,6 @@ const shouldReduceMotion = prefersReducedMotion && !motionForced;
 
 // Initialize 3D Hero Experience
 initHeroExperience(shouldReduceMotion);
+
+// Initialize 3D Pour Experience
+initPourExperience(shouldReduceMotion);
