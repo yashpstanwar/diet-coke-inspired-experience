@@ -1,4 +1,6 @@
 // Diet Coke Interactive 3D Experience - Main Entry
+import { initHeroExperience } from './can.js';
+
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -25,3 +27,14 @@ if (menuToggle && mobileMenu) {
     if (e.key === 'Escape') toggleMenu(false);
   });
 }
+
+// Check reduced motion preference
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let motionForced = false;
+try {
+  motionForced = localStorage.getItem('diet-coke-motion-enabled') === 'true';
+} catch {}
+const shouldReduceMotion = prefersReducedMotion && !motionForced;
+
+// Initialize 3D Hero Experience
+initHeroExperience(shouldReduceMotion);

@@ -177,3 +177,76 @@ export function createCanMesh() {
 
   return { can, tabPivot, aperture };
 }
+
+
+/**
+ * Initializes the Three.js 3D Hero stage with realistic lighting,
+ * dynamic tone mapping, and responsive viewport sizing.
+ */
+export function initHeroExperience(reducedMotion = false) {
+  const canvas = document.querySelector('#can-canvas');
+  const wrap = document.querySelector('.can-wrap');
+  const stage = document.querySelector('.hero-stage');
+
+  if (!canvas || !wrap || !stage) return;
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+  } catch (err) {
+    wrap.classList.add('no-webgl');
+    console.warn('3D is unavailable; using the product image fallback.', err);
+    return;
+  }
+
+  wrap.classList.add('has-webgl');
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.35;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+  camera.position.set(0, 0.15, 8.5);
+  camera.lookAt(0, 0, 0);
+
+  // Lighting
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x7d8388, 2.4);
+  scene.add(hemiLight);
+
+  const keyLight = new THREE.DirectionalLight(0xffffff, 3.3);
+  keyLight.position.set(-4, 6, 8);
+  scene.add(keyLight);
+
+  const fillLight = new THREE.DirectionalLight(0xffffff, 2.2);
+  fillLight.position.set(4, 2, -3);
+  scene.add(fillLight);
+
+  // Add 3D Can
+  const { can } = createCanMesh();
+  scene.add(can);
+  can.rotation.set(0.05, Math.PI, -0.12);
+
+  // Viewport resize handling
+  function onResize() {
+    const { width, height } = wrap.getBoundingClientRect();
+    if (!width || !height) return;
+
+    renderer.setSize(width, height, false);
+    camera.aspect = width / height;
+    camera.position.z = width < 500 ? 9.2 : 8.5;
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
+  }
+
+  const resizeObserver = new ResizeObserver(onResize);
+  resizeObserver.observe(wrap);
+  onResize();
+
+  return { renderer, scene, camera, can, stage };
+}
