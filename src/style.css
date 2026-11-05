@@ -392,19 +392,7 @@ html.lenis,
 }
 
 .can-fallback {
-  position: absolute;
-  max-height: 85%;
-  max-width: 80%;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-}
-
-.can-wrap.has-webgl .can-fallback {
-  display: none;
-}
-
-.can-wrap.no-webgl canvas {
-  display: none;
+  display: none !important;
 }
 
 .hero-aside {
@@ -450,31 +438,11 @@ html.lenis,
   bottom: 38px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .hero-bottom-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.hero-bottom-left strong,
-.hero-bottom-left small {
-  display: block;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.hero-bottom-left small {
-  margin-top: 5px;
-  color: #777;
-}
-
-.spark {
-  color: var(--red);
-  font-size: 29px;
+  display: none;
 }
 
 .scroll-cue {
@@ -506,6 +474,8 @@ html.lenis,
 }
 
 .hero-count {
+  position: absolute;
+  right: 0;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -805,19 +775,7 @@ html.lenis,
 }
 
 .pour-fallback {
-  position: absolute;
-  max-width: 82%;
-  max-height: 80%;
-  object-fit: contain;
-  box-shadow: 0 20px 50px #17171925;
-}
-
-.pour-canvas-wrap.has-webgl .pour-fallback {
-  display: none;
-}
-
-.pour-canvas-wrap.no-webgl canvas {
-  display: none;
+  display: none !important;
 }
 
 .pour-scroll {
