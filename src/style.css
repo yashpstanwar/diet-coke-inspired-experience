@@ -1098,3 +1098,262 @@ html.lenis,
   color: #a8a8a8;
   margin: 0;
 }
+
+
+/* Break Section Banner */
+.break-section {
+  height: 720px;
+  position: relative;
+  overflow: hidden;
+  background: #b9c3c4;
+}
+
+.break-image {
+  position: absolute;
+  top: -10%;
+  right: 0;
+  bottom: -10%;
+  left: 0;
+  background: linear-gradient(90deg, #111111c2, #11111126 70%), url(/assets/diet-coke-editorial.png) center/cover;
+}
+
+.break-text {
+  position: absolute;
+  left: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  max-width: 600px;
+}
+
+.section-label.light {
+  color: #ffffffba;
+}
+
+.break-text h2 {
+  font: 700 clamp(78px, 8.6vw, 130px)/0.86 'Oswald', Impact, sans-serif;
+  letter-spacing: -0.05em;
+  margin: 28px 0;
+}
+
+.break-text h2 em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+}
+
+.break-text h2 span {
+  color: var(--red);
+}
+
+.break-text p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ffffffc9;
+  max-width: 340px;
+  margin: 0 0 30px;
+}
+
+.pill-button.white {
+  background: #fff;
+  color: #171719;
+}
+
+.pill-button.white:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+.break-caption {
+  position: absolute;
+  bottom: 35px;
+  left: 8%;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  color: #ffffff9a;
+}
+
+/* Moments Grid */
+.moments {
+  background: #ebeceb;
+}
+
+.moments-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.moments h2 em,
+.faq h2 em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.moments-head > p {
+  max-width: 250px;
+  color: #777;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.moment-img {
+  height: clamp(280px, 30vw, 440px);
+  position: relative;
+  overflow: hidden;
+  background: #d6d8d8;
+}
+
+.moment-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+
+.moment-card:hover img {
+  transform: scale(1.05);
+}
+
+.moment-img span {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.moment-copy {
+  padding: 20px 0;
+}
+
+.moment-copy small {
+  color: var(--red);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.moment-copy h3 {
+  font: 600 24px 'Oswald', sans-serif;
+  margin: 12px 0 8px;
+}
+
+.moment-copy p {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 270px;
+  margin: 0;
+}
+
+/* The Lineup Section */
+.lineup {
+  background: #f1f0ed;
+}
+
+.lineup-top > p {
+  max-width: 260px;
+  margin: 0 0 5px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.product-visual {
+  height: clamp(300px, 29vw, 430px);
+  position: relative;
+  overflow: hidden;
+  background: #e1e3e3;
+  display: grid;
+  place-items: center;
+}
+
+.product-visual img {
+  height: 90%;
+  width: 90%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform 0.65s;
+}
+
+.product-card:hover img {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+.product-visual.cherry {
+  background: #e8dce0;
+}
+
+.product-visual.caffeine {
+  background: #e9e3d4;
+}
+
+.product-index {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  z-index: 1;
+}
+
+.product-go {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 22px;
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 22px 0;
+}
+
+.product-info small {
+  color: #999;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.product-info h3 {
+  font: 700 29px 'Oswald', sans-serif;
+  margin: 7px 0;
+}
+
+.product-info p {
+  max-width: 230px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.product-info > span {
+  font-size: 10px;
+  color: var(--red);
+  font-weight: 700;
+  align-self: start;
+  margin-top: 5px;
+}
