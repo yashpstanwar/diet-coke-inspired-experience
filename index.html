@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e6001a" />
+    <meta name="description" content="An unofficial Diet Coke-inspired experience. A little fizz, a lot of attitude." />
+    <title>Diet Coke — The Taste of Being You</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="motion-choice" role="status">
+      <span id="motion-status">Reduced motion is enabled on this device.</span>
+      <button id="motion-toggle" type="button">ENABLE MOTION</button>
+    </div>
+    
+    <header class="header" id="top">
+      <a class="brand" href="#top" aria-label="Diet Coke — back to top">
+        <img src="/assets/diet-coke-mark.png" alt="Diet Coke" />
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#experience">THE EXPERIENCE</a>
+        <a href="#the-pour">THE POUR</a>
+        <a href="#story">OUR STORY</a>
+        <a href="#flavors">THE LINEUP</a>
+        <a href="#details">THE DETAILS</a>
+      </nav>
+      <a class="header-cta" href="#flavors">FIND YOUR FIZZ <span>↗</span></a>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="#experience">THE EXPERIENCE <span>01</span></a>
+        <a href="#the-pour">THE POUR <span>02</span></a>
+        <a href="#story">OUR STORY <span>03</span></a>
+        <a href="#flavors">THE LINEUP <span>04</span></a>
+        <a href="#details">THE DETAILS <span>05</span></a>
+      </nav>
+      <p>THE TASTE OF BEING YOU. © 2026</p>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

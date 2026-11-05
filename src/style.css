@@ -66,3 +66,165 @@ html.lenis,
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+
+/* Header & Navigation */
+.header {
+  height: 92px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 6%;
+  border-bottom: 1px solid #17171924;
+}
+
+.brand {
+  width: 135px;
+  display: block;
+}
+
+.brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 43px;
+  margin: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.desktop-nav a {
+  transition: color 0.2s;
+}
+
+.desktop-nav a:hover {
+  color: var(--red);
+}
+
+.header-cta,
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  background: var(--red);
+  color: #fff;
+  padding: 0 18px 0 23px;
+  height: 49px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.header-cta span,
+.pill-button span {
+  font-size: 18px;
+}
+
+.header-cta:hover,
+.pill-button:hover {
+  background: #171719;
+  transform: translateY(-2px);
+}
+
+.menu-toggle {
+  background: none;
+  border: 0;
+  width: 36px;
+  height: 36px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #171719;
+  transition: transform 0.3s, width 0.3s;
+}
+
+.menu-toggle span:last-child {
+  width: 19px;
+}
+
+.menu-toggle.is-open span {
+  background: #fff;
+}
+
+.menu-toggle.is-open span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menu-toggle.is-open span:last-child {
+  width: 28px;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--red);
+  color: #fff;
+  z-index: 19;
+  padding: 140px 8% 50px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mobile-menu.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+.mobile-menu nav {
+  max-width: 800px;
+}
+
+.mobile-menu nav a {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff75;
+  padding: 20px 0;
+  font: 700 clamp(28px, 5vw, 58px)/1 'Oswald', Impact, sans-serif;
+}
+
+.mobile-menu nav span {
+  font: 700 10px 'DM Sans', sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.mobile-menu p {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.menu-open .brand img {
+  filter: brightness(0) invert(1);
+}
