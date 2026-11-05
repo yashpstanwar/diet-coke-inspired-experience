@@ -79,3 +79,101 @@ export function createCanLabelTexture() {
 
   return texture;
 }
+
+
+/**
+ * Builds a photorealistic 3D Diet Coke can using procedural geometries.
+ * Includes cylindrical body with brushed label, beveled neck, double-rolled top rim,
+ * bottom chime, and an articulated pull-tab with a revealable mouth aperture.
+ */
+export function createCanMesh() {
+  const can = new THREE.Group();
+
+  // Materials
+  const metalMaterial = new THREE.MeshStandardMaterial({
+    color: 0xc3c7ca,
+    metalness: 0.68,
+    roughness: 0.29
+  });
+
+  const rimMaterial = new THREE.MeshStandardMaterial({
+    color: 0x7f8587,
+    metalness: 0.65,
+    roughness: 0.34
+  });
+
+  const bodyMaterial = new THREE.MeshStandardMaterial({
+    map: createCanLabelTexture(),
+    metalness: 0.28,
+    roughness: 0.34
+  });
+
+  // Main cylindrical body
+  const bodyGeo = new THREE.CylinderGeometry(0.76, 0.76, 3.42, 128, 1, true);
+  const bodyMesh = new THREE.Mesh(bodyGeo, bodyMaterial);
+  can.add(bodyMesh);
+
+  // Helper for cylindrical transitions
+  function addCylinder(topR, botR, height, posY, mat = metalMaterial) {
+    const geo = new THREE.CylinderGeometry(topR, botR, height, 96);
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.y = posY;
+    can.add(mesh);
+    return mesh;
+  }
+
+  // Helper for rim toruses
+  function addTorus(radius, tube, posY, mat = metalMaterial) {
+    const geo = new THREE.TorusGeometry(radius, tube, 12, 96);
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.rotation.x = Math.PI / 2;
+    mesh.position.y = posY;
+    can.add(mesh);
+    return mesh;
+  }
+
+  // Top neck taper & rims
+  addCylinder(0.64, 0.76, 0.22, 1.82);
+  addCylinder(0.64, 0.64, 0.04, 1.95, rimMaterial);
+  addTorus(0.64, 0.04, 1.98);
+  addCylinder(0.62, 0.62, 0.025, 1.98);
+  addTorus(0.49, 0.012, 2.0, rimMaterial);
+
+  // Bottom chine & bevel
+  addCylinder(0.76, 0.67, 0.14, -1.78);
+  addTorus(0.67, 0.036, -1.86);
+
+  // Opening aperture (starts closed/hidden)
+  const apertureGeo = new THREE.CircleGeometry(0.12, 32);
+  const apertureMat = new THREE.MeshBasicMaterial({
+    color: 0x292b2b,
+    side: THREE.DoubleSide
+  });
+  const aperture = new THREE.Mesh(apertureGeo, apertureMat);
+  aperture.rotation.x = -Math.PI / 2;
+  aperture.scale.y = 1.55;
+  aperture.position.set(0, 2.008, -0.25);
+  aperture.visible = false;
+  can.add(aperture);
+
+  // Articulated Pull-Tab
+  const tabPivot = new THREE.Group();
+  tabPivot.position.set(0, 2.025, -0.06);
+  can.add(tabPivot);
+
+  const tabRingGeo = new THREE.TorusGeometry(0.14, 0.035, 12, 48);
+  const tabRing = new THREE.Mesh(tabRingGeo, rimMaterial);
+  tabRing.rotation.x = Math.PI / 2;
+  tabRing.scale.set(0.7, 1.35, 1);
+  tabRing.position.z = 0.11;
+  tabPivot.add(tabRing);
+
+  // Rivet
+  const rivetGeo = new THREE.SphereGeometry(0.045, 20, 12);
+  const rivet = new THREE.Mesh(rivetGeo, metalMaterial);
+  rivet.position.set(0, 2.03, -0.06);
+  rivet.scale.y = 0.3;
+  can.add(rivet);
+
+  return { can, tabPivot, aperture };
+}
