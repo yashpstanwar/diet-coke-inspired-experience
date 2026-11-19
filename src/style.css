@@ -2260,3 +2260,126 @@ footer {
     display: block;
   }
 }
+
+
+/* Automations Ninja Floating Watermark Pill */
+.automations-watermark {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  z-index: 50;
+  user-select: none;
+  pointer-events: auto;
+}
+
+@media (min-width: 640px) {
+  .automations-watermark {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+.watermark-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px 5px 14px;
+  border-radius: 9999px;
+  background: rgba(12, 11, 16, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  touch-action: manipulation;
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  .watermark-pill {
+    gap: 9px;
+    padding: 6px 14px 6px 16px;
+  }
+}
+
+.watermark-pill:hover {
+  background: rgba(22, 20, 32, 0.95);
+  border-color: rgba(251, 191, 36, 0.45);
+  box-shadow: 0 4px 25px rgba(242, 165, 26, 0.3);
+  transform: scale(1.05);
+}
+
+.watermark-pill:active {
+  transform: scale(0.95);
+}
+
+.watermark-pill:focus-visible {
+  outline: 2px solid rgba(251, 191, 36, 0.5);
+  outline-offset: 2px;
+}
+
+.watermark-text {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #a1a1aa;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .watermark-text {
+    font-size: 12px;
+  }
+}
+
+.watermark-pill:hover .watermark-text {
+  color: #f4f4f5;
+}
+
+.watermark-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watermark-logo {
+  height: 14px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 6px rgba(242, 165, 26, 0.35));
+}
+
+@media (min-width: 640px) {
+  .watermark-logo {
+    height: 19px;
+  }
+}
+
+.watermark-pill:hover .watermark-logo {
+  transform: scale(1.1);
+}
+
+.watermark-arrow {
+  width: 10px;
+  height: 10px;
+  color: #71717a;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .watermark-arrow {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.watermark-pill:hover .watermark-arrow {
+  color: #fbbf24;
+  transform: translate(2px, -2px);
+}
